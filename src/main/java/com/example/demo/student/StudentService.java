@@ -3,6 +3,7 @@ package com.example.demo.student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +33,27 @@ public class StudentService {
         }
 
         this.studentRepository.save(student);
+    }
+
+    @Transactional
+    public void updateStudent(Long id, String name, String email) {
+        Optional<Student> studentOptional = this.studentRepository.findById(id);
+
+        if (studentOptional.isEmpty()) {
+            throw new IllegalStateException("Id invalid");
+        }
+
+        Student student = studentOptional.get();
+
+        if (name != null && name.length() > 0
+                && !student.getName().equals(name)) {
+            student.setName(name);
+        }
+
+        if (email != null && email.length() > 0
+                && !student.getEmail().equals(email)) {
+            student.setEmail(email);
+        }
     }
 
     public void deleteStudentById(Long id) {
