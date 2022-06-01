@@ -65,6 +65,12 @@ public class StudentController {
         return this.studentService.getStudentDobFromId(id);
     }
 
+    @ResponseBody
+    @GetMapping("/students/over18")
+    public List<Student> getStudentsAbove18YearsOld() {
+        return this.studentService.getStudentsAbove18YearsOld();
+    }
+
     @GetMapping("/student/page")
     public String getStudentPage2(Model model) {
         model.addAttribute("attribute", "Text from controller");

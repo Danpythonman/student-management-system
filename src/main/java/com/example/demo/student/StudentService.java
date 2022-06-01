@@ -66,6 +66,10 @@ public class StudentService {
                 .body(null);
     }
 
+    public List<Student> getStudentsAbove18YearsOld() {
+        return this.studentRepository.findStudentsOver18YearsOld().get();
+    }
+
     public void saveStudent(Student student) {
         Optional<Student> studentOptional = this.studentRepository.findStudentByEmail(student.getEmail());
 
