@@ -53,22 +53,16 @@ public class StudentController {
         this.studentService.deleteStudentById(id);
     }
 
+    @ResponseBody
     @GetMapping("/student/{id}/email")
     public ResponseEntity<String> getStudentEmail(@PathVariable("id") Long id) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("custom-header", "bar");
-        return new ResponseEntity<String>(
-                this.studentService.getStudentById(id).getEmail(),
-                headers,
-                HttpStatus.ACCEPTED
-        );
+        return this.studentService.getStudentEmailById(id);
     }
 
+    @ResponseBody
     @GetMapping("/student/{id}/dob")
     public ResponseEntity<LocalDate> getStudentDob(@PathVariable("id") Long id) {
-        return ResponseEntity.status(401)
-                .header("custom-header", "foo")
-                .body(this.studentService.getStudentById(id).getDob());
+        return this.studentService.getStudentDobFromId(id);
     }
 
     @GetMapping("/student/page")

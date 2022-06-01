@@ -1,11 +1,14 @@
 package com.example.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +28,42 @@ public class StudentService {
 
     public Student getStudentById(Long id) {
         return this.studentRepository.findById(id).get();
+    }
+
+    public ResponseEntity<String> getStudentEmailById(Long id) {
+        Optional<Student> studentOptional = this.studentRepository.findById(id);
+        String responseString;
+
+        HttpHeaders headers = new HttpHeaders();
+        HttpStatus status;
+
+        if (studentOptional.isEmpty()) {
+            responseString = "student with id " + id + " not found";
+            headers.add("found", "no");
+            status = HttpStatus.NOT_FOUND;
+        } else {
+            headers.add("found", "yes");
+            status = HttpStatus.OK;
+            responseString = studentOptional.get().getEmail();
+        }
+
+        return new ResponseEntity<String>(
+                responseString,
+                headers,
+                status
+        );
+    }
+
+    public ResponseEntity<LocalDate> getStudentDobFromId(Long id) {
+        Optional<Student> studentOptional = this.studentRepository.findById(id);
+
+        return studentOptional.isPresent()
+            ? ResponseEntity.status(200)
+                .header("found", "yes")
+                .body(studentOptional.get().getDob())
+            : ResponseEntity.status(404)
+                .header("found", "no")
+                .body(null);
     }
 
     public void saveStudent(Student student) {
