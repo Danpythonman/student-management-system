@@ -16,7 +16,7 @@ import java.util.Optional;
 public class StudentService {
 
     private final StudentRepository studentRepository;
-    // Is this a real bean moment?
+
     @Autowired
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
