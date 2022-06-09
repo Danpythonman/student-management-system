@@ -30,6 +30,14 @@ public class StudentService {
         return this.studentRepository.findById(id).get();
     }
 
+    public Student getStudentByEmail(String email) {
+        Optional<Student> studentFind = this.studentRepository.findStudentByEmail(email);
+        if (studentFind.isPresent()) {
+            return studentFind.get();
+        }
+        return null;
+    }
+
     public ResponseEntity<String> getStudentEmailById(Long id) {
         Optional<Student> studentOptional = this.studentRepository.findById(id);
         String responseString;

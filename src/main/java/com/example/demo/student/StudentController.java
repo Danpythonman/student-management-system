@@ -35,6 +35,12 @@ public class StudentController {
     }
 
     @ResponseBody
+    @GetMapping("/student")
+    public Student getStudent(@RequestParam("email") String email) {
+        return this.studentService.getStudentByEmail(email);
+    }
+
+    @ResponseBody
     @PostMapping("/student")
     public void addStudent(@RequestBody Student student) {
         this.studentService.saveStudent(student);
