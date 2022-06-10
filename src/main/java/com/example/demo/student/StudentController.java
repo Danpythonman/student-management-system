@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -42,8 +42,13 @@ public class StudentController {
 
     @ResponseBody
     @PostMapping("/student")
-    public void addStudent(@RequestBody Student student) {
+    public void addStudent(@ModelAttribute Student student) {
         this.studentService.saveStudent(student);
+    }
+
+    @GetMapping("/register")
+    public String register() {
+        return "addStudent";
     }
 
     @PutMapping("/student/{id}")
@@ -67,7 +72,7 @@ public class StudentController {
 
     @ResponseBody
     @GetMapping("/student/{id}/dob")
-    public ResponseEntity<LocalDate> getStudentDob(@PathVariable("id") Long id) {
+    public ResponseEntity<Date> getStudentDob(@PathVariable("id") Long id) {
         return this.studentService.getStudentDobFromId(id);
     }
 
@@ -82,5 +87,7 @@ public class StudentController {
         model.addAttribute("attribute", "Text from controller");
         return "student.html";
     }
+
+
 
 }

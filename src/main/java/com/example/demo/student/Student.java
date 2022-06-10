@@ -1,8 +1,14 @@
 package com.example.demo.student;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
+
 
 @Entity
 @Table(name = "STUDENT")
@@ -16,7 +22,8 @@ public class Student {
 
     private String email;
 
-    private LocalDate dob;
+    @DateTimeFormat(fallbackPatterns = "yyyy-MM-dd")
+    private Date dob;
 
     @Transient
     private Integer age;
@@ -25,14 +32,14 @@ public class Student {
     }
 
     //haha!!
-    public Student(Long id, String name, String email, LocalDate dob) {
+    public Student(Long id, String name, String email, Date dob) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
     }
 
-    public Student(String name, String email, Integer age, LocalDate dob) {
+    public Student(String name, String email, Integer age, Date dob) {
         this.name = name;
         this.email = email;
         this.dob = dob;
@@ -63,18 +70,18 @@ public class Student {
     }
 
     public Integer getAge() {
-        return Period.between(this.dob, LocalDate.now()).getYears();
+        return Period.between(this.dob.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {
         this.age = age;
     }
 
-    public LocalDate getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(LocalDate dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 

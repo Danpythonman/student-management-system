@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.transaction.Transactional;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,7 +62,7 @@ public class StudentService {
         );
     }
 
-    public ResponseEntity<LocalDate> getStudentDobFromId(Long id) {
+    public ResponseEntity<Date> getStudentDobFromId(Long id) {
         Optional<Student> studentOptional = this.studentRepository.findById(id);
 
         return studentOptional.isPresent()
