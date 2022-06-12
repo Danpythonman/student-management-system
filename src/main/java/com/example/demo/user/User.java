@@ -21,30 +21,22 @@ public class User {
     private String email;
     private String password;
 
-    @DateTimeFormat(fallbackPatterns = "yyyy-MM-dd")
-    private Date dob;
-
-    @Transient
-    private Integer age;
-
     public User() {
     }
 
-    public User(String fName, String lName, String email, String password, Date dob) {
+    public User(String fName, String lName, String email, String password) {
         this.fName = fName;
         this.lName = lName;
         this.email = email;
         this.password = password;
-        this.dob = dob;
     }
 
-    public User(Long id, String fName, String lName, String email, String password, Date dob) {
+    public User(Long id, String fName, String lName, String email, String password) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
         this.email = email;
         this.password = password;
-        this.dob = dob;
     }
 
     public Long getId() {
@@ -82,12 +74,6 @@ public class User {
         this.password = password;
     }
 
-    public Date getDob() {
-        return dob;
-    }
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
 
     @Override
     public String toString() {
@@ -97,8 +83,6 @@ public class User {
                 ", lName='" + lName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", dob=" + dob +
-                ", age=" + age +
                 '}';
     }
 }
