@@ -7,3 +7,5 @@ INSERT INTO student (id, name, email, dob) VALUES (DEFAULT, 'May', 'may@gmail.co
 INSERT INTO student (id, name, email, dob) VALUES (DEFAULT, 'BenGerman Thong', 'ben@gmail.com', '2002-04-20');
 
 INSERT INTO users (id, fName, lName, email, password) VALUES (DEFAULT, 'Bengo', '3022', 'bengo3022@gmail.com', 'password');
+
+INSERT INTO event (id, name, startDate, endDate) VALUES (DEFAULT, 'Ben Bornday', '2002-05-20 13:00:00', '2002-05-20 14:00:00');
