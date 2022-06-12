@@ -5,3 +5,5 @@ INSERT INTO student (id, name, email, dob) VALUES (DEFAULT, 'Dom', 'dom@gmail.co
 INSERT INTO student (id, name, email, dob) VALUES (DEFAULT, 'Sam', 'sam@gmail.com', '2012-07-18');
 INSERT INTO student (id, name, email, dob) VALUES (DEFAULT, 'May', 'may@gmail.com', '1992-02-05');
 INSERT INTO student (id, name, email, dob) VALUES (DEFAULT, 'Ben', 'ben@gmail.com', '2002-05-20');
+
+INSERT INTO users (id, fName, lName, email, password, dob) VALUES (DEFAULT, 'Bengo', '3022', 'bengo3022@gmail.com', 'password','2002-04-20');
