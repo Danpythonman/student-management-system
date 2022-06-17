@@ -83,11 +83,15 @@ public class StudentController {
     }
 
     @GetMapping("/student/page")
-    public String getStudentPage2(Model model) {
+    public String getStudentPage(Model model) {
         model.addAttribute("attribute", "Text from controller");
         return "student.html";
     }
 
-
+    @GetMapping("/student/page/{id}")
+    public String getStudentPage2(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("student", this.studentService.getStudentById(id));
+        return "viewStudent.html";
+    }
 
 }
