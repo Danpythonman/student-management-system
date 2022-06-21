@@ -32,9 +32,9 @@ public class User implements UserDetails {
     @Column(name="password")
     private String password;
     @Column(name="locked")
-    private boolean locked;
+    private boolean locked = false;
     @Column(name="enabled")
-    private boolean enabled;
+    private boolean enabled = true;
 
     public User() {
     }
