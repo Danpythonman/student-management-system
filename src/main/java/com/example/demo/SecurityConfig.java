@@ -12,6 +12,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity security) throws Exception
     {
-        security.httpBasic().disable();
+        security.authorizeRequests()
+        .antMatchers("/signIn").permitAll()
+        .antMatchers("/register").permitAll()
+        .anyRequest().authenticated()
+        .and().formLogin().loginPage("/signIn").usernameParameter("email").permitAll();
     }
 }
