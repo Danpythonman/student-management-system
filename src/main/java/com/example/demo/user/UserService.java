@@ -57,6 +57,14 @@ public class UserService implements UserDetailsService {
         return null;
     }
 
+    public User getUserByEmail(String email) {
+        Optional<User> userFind = this.userRepository.findByEmail(email);
+        if (userFind.isPresent()) {
+            return userFind.get();
+        }
+        return null;
+    }
+
     public List<User> getUsers() {
         return this.userRepository.findAll();
     }
