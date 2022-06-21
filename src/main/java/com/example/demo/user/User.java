@@ -1,17 +1,23 @@
 package com.example.demo.user;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.GenerationType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.ZoneId;
-import java.util.Date;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.Collections;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
 
 @Entity
 @Table(name = "USERS")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +31,10 @@ public class User {
     private String email;
     @Column(name="password")
     private String password;
+    @Column(name="locked")
+    private boolean locked;
+    @Column(name="enabled")
+    private boolean enabled;
 
     public User() {
     }
@@ -42,6 +52,13 @@ public class User {
         this.lName = lName;
         this.email = email;
         this.password = password;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("user");
+
+        return Collections.singletonList(authority);
     }
 
     public Long getId() {
@@ -65,6 +82,11 @@ public class User {
         this.lName = lName;
     }
 
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -79,6 +101,24 @@ public class User {
         this.password = password;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
 
     @Override
     public String toString() {
