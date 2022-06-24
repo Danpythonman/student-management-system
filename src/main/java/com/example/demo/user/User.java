@@ -8,11 +8,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.example.demo.user_chatroom.UserChatroom;
+
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
 
 @Entity
@@ -23,18 +27,27 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
+
     @Column(name="fname")
     private String fName;
+
     @Column(name="lname")
     private String lName;
+
     @Column(name="email")
     private String email;
+
     @Column(name="password")
     private String password;
+
     @Column(name="locked")
     private boolean locked = false;
+
     @Column(name="enabled")
     private boolean enabled = true;
+
+    @OneToMany(mappedBy = "chatroom")
+    private List<UserChatroom> userChatroomConnections;
 
     public User() {
     }
