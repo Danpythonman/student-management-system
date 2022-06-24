@@ -6,6 +6,4 @@ INSERT INTO student (id, name, email, dob) VALUES (DEFAULT, 'Sam', 'sam@gmail.co
 INSERT INTO student (id, name, email, dob) VALUES (DEFAULT, 'May', 'may@gmail.com', '1992-02-05');
 INSERT INTO student (id, name, email, dob) VALUES (DEFAULT, 'BenGerman Thong', 'ben@gmail.com', '2002-04-20');
 
-INSERT INTO users (id, fname, lname, email, password, locked, enabled) VALUES (DEFAULT, 'Bengo', '3022', 'bengo3022@gmail.com', 'password', 'false', 'true');
-
-INSERT INTO event (id, name, startDate, endDate) VALUES (DEFAULT, 'Ben Bornday', '2002-05-20 13:00:00', '2002-05-20 14:00:00');
+INSERT INTO users (id, fname, lname, email, password, locked, enabled) VALUES (DEFAULT, 'Bengo', '3022', 'bengo3022@gmail.com', '$2a$10$iH2k64N5T/OvKm0gfMaQnu.Hnnj/UrV7qa.UBXg4LsuzYc7FwHVya', 'false', 'true');
