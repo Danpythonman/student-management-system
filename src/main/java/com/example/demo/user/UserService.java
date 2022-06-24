@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.chatroom.ChatroomInterface;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -68,4 +70,9 @@ public class UserService implements UserDetailsService {
     public List<User> getUsers() {
         return this.userRepository.findAll();
     }
+
+    public List<ChatroomInterface> getUserChatrooms(Long id) {
+        return this.userRepository.findChatroomsForUser(id);
+    }
+
 }

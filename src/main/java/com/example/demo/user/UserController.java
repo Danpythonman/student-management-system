@@ -1,7 +1,5 @@
 package com.example.demo.user;
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,6 +26,7 @@ public class UserController {
             User user = this.userService.getUserByEmail(((UserDetails) principal).getUsername());
 
             model.addAttribute("user", user);
+            model.addAttribute("chatrooms", this.userService.getUserChatrooms(user.getId()));
         }
 
         return "homePage.html";

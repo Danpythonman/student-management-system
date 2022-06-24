@@ -6,5 +6,9 @@
 </head>
 <body>
     <h1 th:inline="text">Hello [[${user.fName}]] [[${user.lName}]]</h1>
+
+    <div th:each="chatroom : ${chatrooms}">
+        <a th:text="${chatroom.name}"></a>
+    </div>
 </body>
 </html>
